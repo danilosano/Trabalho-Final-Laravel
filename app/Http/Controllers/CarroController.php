@@ -17,7 +17,7 @@ class CarroController extends Controller
 
     public function index()
     {
-        $carros = Carro::orderBy('carro')->get();
+        $carros = Carro::orderBy('carros')->get();
 
         return view('carro.index')->with('carros', $carros);
     }
@@ -31,10 +31,11 @@ class CarroController extends Controller
     {
         $carro = new Carro();
 
+        $carro->montadoraId = $request->input('montadoraId');
         $carro->nome = $request->input('nome');
-        $carro->modelo = $request->input('modelo');
         $carro->ano = $request->input('ano');
-        $carro->marcas_id = $request->input('cor');
+        $carro->modelo = $request->input('modelo');
+        $carro->cor = $request->input('cor');
         $carro->save();
 
         return(redirect(route('carro.index')));
@@ -53,13 +54,36 @@ class CarroController extends Controller
 
     public function edit($id)
     {
-        $carro = Carro::find($id);
-        if($carro)
+        $carros = Carro::find($id);
+        if($carros)
         {
-            return view('carro.edot')->with('carro', $carro);
+            return view('carro.edit')->with('carro', $carro);
         } else {
             abort(404);
         }
+    }
+    public function update(Request $request, $id)
+    {
+        $carros = Carro::find($id);
+
+        $carros->montadoraId = $request->input('montadoraId');
+        $carros->nome = $request->input('nome');
+        $carros->ano = $request->input('ano');
+        $carros->modelo = $request->input('modelo');
+        $carros->cor = $request->input('cor');
+        
+        $client->save();
+        return(redirect(route('carro.index')));
+
+    }
+
+    public function destroy($id)
+    {
+        $carros = Carro::find($id);
+        $carros->delete();
+
+        return(redirect(route('carro.index')));
+
     }
 
 }

@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/carro', [CarroController::class, 'index']);
 Route::resource('/carro', CarroController::class);

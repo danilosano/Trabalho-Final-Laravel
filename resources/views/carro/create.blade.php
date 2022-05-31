@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <form method="POST" action="{{ route('client.store') }}">
+    <form method="POST" action="{{ route('carro.store') }}">
         @csrf
         <label for="name">Nome</label>
         <input type="text" name="name" maxlength="50" required>
