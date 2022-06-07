@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carro;
+use App\Models\Montadora;
 use Illuminate\Http\Request;
 use stdClass;
 
@@ -18,20 +19,29 @@ class CarroController extends Controller
     public function index()
     {
         $carros = Carro::orderBy('carros')->get();
+        $montadora = Montadora::orderBy('montadoras')->get();
 
-        return view('carro.index')->with('carros', $carros);
+        return view('carro.index')->with('carros', $carros)->with('montadaora', $montadora);
     }
 
     public function create()
 {
-    return view('carro.create');
+    $lista = Montadora::orderBy('montadoras')->get();
+
+    return view('carro.create')->with('lista', $lista);
 }
 
-    public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $carro = new Carro();
 
-        $carro->montadoraId = $request->input('montadoraId');
+        $carro->montadoraId = $request->input('montadoraid');
         $carro->nome = $request->input('nome');
         $carro->ano = $request->input('ano');
         $carro->modelo = $request->input('modelo');
@@ -43,10 +53,11 @@ class CarroController extends Controller
 
     public function show($id)
     {
+        $lista = Montadora::orderBy('montadoras')->get();
         $carro = Carro::find($id);
         if($carro)
         {
-            return view('carro.show')->with('carro', $carro);
+            return view('carro.show')->with('carro', $carro)->with('lista', $lista);
         }else {
             abort(404);
         }
@@ -62,17 +73,18 @@ class CarroController extends Controller
             abort(404);
         }
     }
+
     public function update(Request $request, $id)
     {
         $carros = Carro::find($id);
 
-        $carros->montadoraId = $request->input('montadoraId');
+        $carros->montadoraId = $request->input('montadoraid');
         $carros->nome = $request->input('nome');
         $carros->ano = $request->input('ano');
         $carros->modelo = $request->input('modelo');
         $carros->cor = $request->input('cor');
         
-        $client->save();
+        $carros->save();
         return(redirect(route('carro.index')));
 
     }

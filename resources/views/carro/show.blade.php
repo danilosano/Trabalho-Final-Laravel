@@ -3,36 +3,38 @@
 @section('content')
     
 <div id="main">
+
     <div class="inner">
         <!-- About Us -->
         <header id="inner">
             <h1>Cadastro de carros</h1>
             <p>Cadastro dos carros mais malados da America Latina</p>
         </header>
-        <form action="{{ route('carro.store')}}" method="POST">	
+        <form action="{{ route('carro.update', $carro->id)}}" method="POST">	
             @csrf
+            @method('put')
             <!-- Nome input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="nomeCarro">Nome do Carro</label>
-                <input type="text" id="nome" name="nome" class="form-control" />
+                <input type="text" id="nome" name="nome" value="{{ $carro->nome}}" class="form-control" />
             </div>
 
             <!-- Modelo input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="modeloCarro">Modelo do Carro</label>
-                <input type="text" id="modelo" name="modelo" class="form-control" />
+                <input type="text" id="modelo" name="modelo" value="{{ $carro->modelo}}" class="form-control" />
             </div>	
             
             <!-- ano- input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="anoCarro">Ano do Carro</label>
-                <input type="number" id="ano" name="ano" class="form-control" />
+                <input type="number" id="ano" name="ano" value="{{ $carro->ano}}" class="form-control" />
             </div>	
 
             <!-- cor input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="corCarro">Cor do Carro</label>
-                <input type="text" id="cor" name="cor" class="form-control" />
+                <input type="text" id="cor" name="cor" value="{{ $carro->cor}}" class="form-control" />
             </div>
 
             <select id="montadoraid" name="montadoraid">
@@ -42,7 +44,7 @@
                 </option>
             @endforeach
             </select>
-            <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Atualizar</button>
         </form>
         <br>
 </div>
