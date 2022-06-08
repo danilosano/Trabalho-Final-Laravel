@@ -10,6 +10,7 @@ use stdClass;
 class CarroController extends Controller
 {
     private $carros = [];
+    private $montadora = [];
 
     public function __construct()
     {
@@ -19,9 +20,9 @@ class CarroController extends Controller
     public function index()
     {
         $carros = Carro::orderBy('carros')->get();
-        $montadora = Montadora::orderBy('montadoras')->get();
+        $montadora = Montadora::orderBy('id')->get();
 
-        return view('carro.index')->with('carros', $carros)->with('montadaora', $montadora);
+        return view('carro.index')->with('carros', $carros)->with('montadoras',$montadora);
     }
 
     public function create()

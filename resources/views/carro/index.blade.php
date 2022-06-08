@@ -1,7 +1,4 @@
 @extends('base')
-@php
-    $nomes = ['Toma', 'Tomeee'];
-@endphp
 @section('content')
     
     <h2>Carros cadastrados</h2>
@@ -19,16 +16,19 @@
                 @foreach($carros as $carro)
                     <tr>
 						<td>{{ $carro->id }}</td>
-                        @if($carro->montadoraId == 7){
-                            <td>Carro Zika</td>
-                        }
-                        @endif
-						
+                        <td>{{ $montadoras[$carro->montadoraId-1]->nome }}</td>
 						<td>{{ $carro->nome }}</td>
 						<td>{{ $carro->ano }}</td>
                         <td>{{ $carro->modelo }}</td>
                         <td>{{ $carro->cor }}</td>
-                        <td><button><a href="{{route("carro.show", $carro->id)}}">Visualizar</a></button></td>
+                        <td><a href="{{route("carro.show", $carro->id)}}"><input type="submit" value="Visualizar"></a></td>
+                        <td><form method="POST" 
+                           action="{{ route('carro.destroy',  $carro->id ) }}">
+                           @csrf
+                           @method('DELETE')
+                           <input type="submit" value="Excluir">
+                        </form>
+                        </td>
                     </tr>
                 @endforeach
             </table>

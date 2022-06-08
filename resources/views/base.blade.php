@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Cadastro de Carro</title>
+		<title>Carros e Montadoras</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
@@ -26,13 +26,13 @@
                                             <li><a href="{{ route('carro.index') }}">Início</a></li>
                                             <li><a href="{{ route('carro.create') }}">Novo Carro</a></li>
                                         </ul>
-                                    {{-- </li>
+                                    </li>
                                     <li>Montadoras
                                         <ul>
                                             <li><a href="{{ route('montadora.index') }}">Início</a></li>
                                             <li><a href="{{ route('montadora.create') }}">Nova montadora</a></li>
                                         </ul>
-                                    </li> --}}
+                                    </li>
                                 </ol>
 						</div>
 					</header>

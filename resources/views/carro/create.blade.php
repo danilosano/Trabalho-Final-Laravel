@@ -9,6 +9,8 @@
             <h1>Cadastro de carros</h1>
             <p>Cadastro dos carros mais malados da America Latina</p>
         </header>
+        <div class="row">
+        <div class="col-lg-8">
         <form action="{{ route('carro.store')}}" method="POST">	
             @csrf
             <!-- Nome input -->
@@ -42,8 +44,11 @@
                 </option>
             @endforeach
             </select>
+            <br><br>
             <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
         </form>
+    </div>
+</div>
         <br>
 </div>
 

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarroController;
+use App\Http\Controllers\MontadoraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::get('/', function () {
 
 Route::get('/carro', [CarroController::class, 'index']);
 Route::resource('/carro', CarroController::class);
+
+Route::get('/montadora', [MontadoraController::class, 'index']);
+Route::resource('/montadora', MontadoraController::class);

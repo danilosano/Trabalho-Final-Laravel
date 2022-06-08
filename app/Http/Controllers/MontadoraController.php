@@ -11,8 +11,8 @@ class MontadoraController extends Controller
 
     public function index()
     {
-        $carros = Carro::all();
-        return view('montadora.index')->with('montadoras', $montadora);
+        $montadoras = Montadora::orderBy('id')->get();
+        return view('montadora.index')->with('montadoras', $montadoras);
     }
 
     public function create()
@@ -20,12 +20,12 @@ class MontadoraController extends Controller
         return view('montadora.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $montadoras = new Montadora();
 
         $montadoras->nome = $request->input('nome');
-        $montadoras->nacionalidade = $request->input('valunacionalidadee');
+        $montadoras->nacionalidade = $request->input('nacionalidade');
         $montadoras->anoCriacao = $request->input('anoCriacao');
         $montadoras->telefone = $request->input('telefone');
         $montadoras->save();
