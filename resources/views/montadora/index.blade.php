@@ -20,7 +20,7 @@
 						<td>{{ $montadora->anoCriacao }}</td>
                         <td>{{ $montadora->nacionalidade }}</td>
                         <td>{{ $montadora->telefone }}</td>
-                        <td><input type="submit" href="{{route("montadora.show", $montadora->id)}}" value="Visualizar"></td>
+                        <td><a href="{{route("montadora.show", $montadora->id)}}"><input type="submit" value="Visualizar"></a></td>
                     </tr>
                 @endforeach
             </table>
