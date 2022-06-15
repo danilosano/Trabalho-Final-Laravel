@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarroController;
 use App\Http\Controllers\MontadoraController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,15 @@ use App\Http\Controllers\MontadoraController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware(['auth']);
+
 
 Route::get('/carro', [CarroController::class, 'index']);
-Route::resource('/carro', CarroController::class);
+Route::resource('/carro', CarroController::class)->middleware(['auth']);
 
 Route::get('/montadora', [MontadoraController::class, 'index']);
-Route::resource('/montadora', MontadoraController::class);
+Route::resource('/montadora', MontadoraController::class)->middleware(['auth']);
+
+Auth::routes();
+
+Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
